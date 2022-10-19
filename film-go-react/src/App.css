@@ -15,3 +15,26 @@ body {
   background-image: url("../img//spacer-1.svg");
   z-index: 999;
 }
+
+/* cards */
+
+.card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075),
+    0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075),
+    0 0 16px hsl(0deg 0% 0% / 0.075);
+}
+.card > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-container {
+  overflow: hidden;
+}
