@@ -1,17 +1,16 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/index.jsx";
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "./theme/index";
+import { theme } from "./theme/index.jsx";
+import Hero from "./components/Hero/index.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <ThemeProvider theme={theme}>
         <Navbar />
+        <Hero />
       </ThemeProvider>
     </>
   );
