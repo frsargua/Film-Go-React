@@ -4,7 +4,8 @@ import SvgHeroImage from "../../images/Hero.svg";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import CardMovie from "../CardMovie/index.jsx";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
+import Genres from "../Genres";
 
 const top100Films = () => [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -37,14 +38,20 @@ const movieTitles = [
   },
   {
     url: "https://i0.wp.com/runpee.com/wp-content/uploads/2022/06/minions-the-rise-of-gru_square.jpg?fit=300%2C300&ssl=1",
-    top: "60%",
-    left: "75%",
+    top: "5%",
+    left: "55%",
     size: "180px",
+  },
+  {
+    url: "https://pyxis.nymag.com/v1/imgs/b73/d51/f4991a746cedf9801c8c6a1b656d5c579b-scream.rsquare.w700.jpg",
+    top: "55%",
+    left: "70%",
+    size: "80px",
   },
   {
     url: "https://dci832c741skk.cloudfront.net/assets/files/28989/the-lost-city.800x600.jpg",
     top: "15%",
-    left: "85%",
+    left: "80%",
     size: "200px",
   },
 ];
@@ -82,6 +89,7 @@ export default function Hero() {
           >
             <Typography
               variant="h1"
+              mt="3rem"
               color="white"
               fontWeight="700"
               textAlign="center"
@@ -104,19 +112,23 @@ export default function Hero() {
                   variant="outlined"
                   sx={{
                     borderRadius: "10px",
-                    mb: "16rem",
+                    mb: "3rem",
                     backgroundColor: "pureLight.main",
+                    zIndex: 999,
                   }}
                 />
               )}
             />
+            <Genres />
           </Box>
         </Container>
-        {movieTitles.map((el) => (
+        {movieTitles.map((el, i) => (
           <MovieBox
+            key={i}
             sx={{
               top: `${el.top}`,
               left: `${el.left}`,
+              display: { md: "none", lg: "block" },
             }}
           >
             <CardMovie emoji={`${el.url}`} size={`${el.size}`} />
