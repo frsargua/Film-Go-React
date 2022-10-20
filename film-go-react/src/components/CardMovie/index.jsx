@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const hue = (h) => `hsl(${h}, 100%, 50%)`;
 
-export default function CardMovie({ emoji }) {
+export default function CardMovie({ emoji, size }) {
   return (
     <motion.div
       className="card-container"
@@ -12,7 +12,7 @@ export default function CardMovie({ emoji }) {
     >
       <div className="splash" />
       <motion.div className="card">
-        <img src={`${emoji}`} />
+        <img style={{ height: size, width: size }} src={`${emoji}`} />
       </motion.div>
     </motion.div>
   );
