@@ -6,19 +6,16 @@ import { theme } from "./theme/index.jsx";
 import Hero from "./components/Hero/index.jsx";
 import MovieCard from "./components/MovieCard";
 import { Container } from "@mui/system";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
-        <Hero />
-        <Container sx={{ overflow: "visible" }}>
-          <MovieCard
-            imgLink={"jQb1UjOdc2DsU4SqDebrVH8dHvC.jpg"}
-            title={"The Trapped 13: How We Survived The Thai Cave"}
-            index={1}
-          />
+        {/* <Navbar />
+        <Hero /> */}
+        <Container maxWidth="xl" sx={{ mx: "auto" }}>
+          <SearchResults />
         </Container>
       </ThemeProvider>
     </>

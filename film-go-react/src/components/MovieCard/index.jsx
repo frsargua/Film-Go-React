@@ -14,7 +14,9 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
   return (
     <Card
       sx={{
-        maxWidth: 345,
+        width: "100%",
+        maxWidth: "345px",
+        m: "auto",
         position: "relative",
         overflow: "auto",
         borderRadius: "15px",
@@ -35,18 +37,13 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
         size="large"
         color="warning"
         sx={{
-          p: "1.5rem",
-          background: bgColor,
+          p: "0.5rem",
           position: "absolute",
           right: "0px",
           bottom: "0px",
-          borderRadius: "0px",
-          borderTopLeftRadius: "7px",
-          height: "25px",
-          width: "25px",
         }}
       >
-        <FavoriteIcon />
+        <FavoriteIcon sx={{ fontSize: "2rem" }} />
       </IconButton>
       <IconButton
         id="play"
@@ -54,18 +51,13 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
         size="large"
         color="warning"
         sx={{
-          p: "1.5rem",
+          p: "0.5rem",
           position: "absolute",
           bottom: "0px",
           left: "0px",
-          background: bgColor,
-          height: "25px",
-          width: "25px",
-          borderRadius: "0px",
-          borderTopRightRadius: "7px",
         }}
       >
-        <PlayCircleIcon />
+        <PlayCircleIcon sx={{ fontSize: "2rem" }} />
       </IconButton>
 
       <Box
@@ -85,7 +77,7 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
             background: "white",
             color: "black",
             p: "1rem",
-            borderRadius: "10px",
+            borderBottomRightRadius: "10px",
             m: "auto",
             mr: "10px",
           }}
