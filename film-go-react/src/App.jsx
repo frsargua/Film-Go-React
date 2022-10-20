@@ -7,15 +7,19 @@ import Hero from "./components/Hero/index.jsx";
 import MovieCard from "./components/MovieCard";
 import { Container } from "@mui/system";
 import SearchResults from "./pages/SearchResults";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* <Navbar />
-        <Hero /> */}
+        <Navbar />
+        {/* <Hero /> */}
         <Container maxWidth="xl" sx={{ mx: "auto" }}>
-          <SearchResults />
+          <br></br>
+          <br></br>
+          {/* <SearchResults /> */}
+          <MovieDetails />
         </Container>
       </ThemeProvider>
     </>

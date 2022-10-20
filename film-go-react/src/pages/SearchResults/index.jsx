@@ -10,24 +10,39 @@ const movies = [
   {
     imgLink: "jQb1UjOdc2DsU4SqDebrVH8dHvC.jpg",
     title: "The Trapped 13: How We Survived The Thai Cave",
-    index: 1,
+    index: 2,
   },
   {
     imgLink: "jQb1UjOdc2DsU4SqDebrVH8dHvC.jpg",
     title: "The Trapped 13: How We Survived The Thai Cave",
-    index: 1,
+    index: 3,
   },
   {
     imgLink: "jQb1UjOdc2DsU4SqDebrVH8dHvC.jpg",
     title: "The Trapped 13: How We Survived The Thai Cave",
-    index: 1,
+    index: 4,
   },
 ];
 
 export default function SearchResults() {
   return (
     <>
-      <Typography variant="h1" fontWeight="400" textAlign="center">
+      <Typography
+        variant="h3"
+        fontWeight="400"
+        textAlign="center"
+        gutterBottom
+        sx={{ display: { xs: "block", md: "none" } }}
+      >
+        Top 10 movies in Genre
+      </Typography>
+      <Typography
+        variant="h1"
+        fontWeight="400"
+        textAlign="center"
+        gutterBottom
+        sx={{ display: { xs: "none", md: "block" } }}
+      >
         Top 10 movies in Genre
       </Typography>
       <Grid container spacing={2}>
