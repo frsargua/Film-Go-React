@@ -8,8 +8,6 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { Link } from "react-router-dom";
 
 export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
-  const bgColor = "rgba(255, 141, 0, 0.59)";
-
   return (
     <Card
       sx={{
