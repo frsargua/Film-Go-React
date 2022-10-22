@@ -27,14 +27,31 @@ export default function Hero() {
     return data.json();
   }
 
+  async function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+
   const navigate = useNavigate();
   async function searchMovieData(event) {
     if (event.keyCode === 13) {
       navigate("/details");
     } else {
-      let filmData = await getData();
-      let topFiveResults = filmData.results.slice(0, 5);
-      setFilmTitles(topFiveResults);
+      const movieTitle = event.target.defaultValue;
+      const processChange = await debounce(async () => {
+        getData().then((data) => {
+          console.log(data);
+          // setFilmTitles(data.results.slice(0.5));
+        });
+      });
+      console.log(processChange());
+      // let topFiveResults = filmData.results.slice(0, 5);
+      // setFilmTitles(topFiveResults);
     }
   }
 
