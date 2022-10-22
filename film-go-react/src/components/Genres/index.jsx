@@ -1,29 +1,29 @@
 import { Container } from "@mui/system";
+import { useEffect, useState } from "react";
 import GenreBadge from "../GenreBadge";
-import { Link } from "react-router-dom";
-
-const genres = [
-  "Action",
-  "Adventure",
-  "Animation",
-  "Comedy",
-  "Crime",
-  "Documentary",
-  "Drama",
-  "Family",
-  "Fantasy",
-  "History",
-  "Horror",
-  "Music",
-  "Mystery",
-  "Romance",
-  "Science Fiction",
-  "TV Movie",
-  "Thriller",
-  "War",
-];
+import genres from "../__mock/genres";
 
 export default function Genres() {
+  const [genrePair, setGenrePair] = useState([]);
+
+  useEffect(() => {});
+
+  const apiUrl =
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=7c7537b799513b436eb6bed714d7edcc&language=en-US";
+
+  async function fetchData(apiUrl) {
+    const data = await fetch(apiUrl);
+    return data.json();
+  }
+
+  async function getGenrePairs() {
+    const genresData = await fetchData(apiUrl);
+    return genresData.genres;
+  }
+  useEffect(async () => {
+    let dataGenre = await getGenrePairs();
+    setGenrePair(dataGenre);
+  }, []);
   return (
     <Container
       maxWidth="xl"
@@ -34,10 +34,8 @@ export default function Genres() {
         zIndex: "999",
       }}
     >
-      {genres.map((el, i) => (
-        <Link to="/search">
-          <GenreBadge key={i} genre={el}></GenreBadge>
-        </Link>
+      {genres().map((el, i) => (
+        <GenreBadge key={i} genre={el} genrePair={genrePair} />
       ))}
     </Container>
   );

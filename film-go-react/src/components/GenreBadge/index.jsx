@@ -1,12 +1,19 @@
 import * as React from "react";
 import Chip from "@mui/material/Chip";
 import randomColor from "randomcolor";
+import { useNavigate } from "react-router-dom";
 
-export default function GenreBadge({ genre }) {
+export default function GenreBadge({ genre, genrePair }) {
   let color = randomColor();
 
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    console.info("You clicked the Chip.");
+    genrePair.forEach((el) => {
+      if (genre === el.name) {
+        navigate(`/details/${el.id}`);
+      }
+    });
   };
 
   return (
