@@ -11,10 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -112,9 +109,14 @@ export default function Navbar() {
               noWrap
               fontWeight="800"
               component="div"
-              sx={{ display: { xs: "block", sm: "block" }, pr: { xs: "1rem" } }}
+              sx={{
+                display: { xs: "block", sm: "block" },
+                pr: { xs: "1rem" },
+              }}
             >
-              Film-Go
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                Film-Go
+              </Link>
             </Typography>
             <Search>
               <SearchIconWrapper>

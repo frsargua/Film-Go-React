@@ -1,5 +1,6 @@
 import { Container } from "@mui/system";
 import GenreBadge from "../GenreBadge";
+import { Link } from "react-router-dom";
 
 const genres = [
   "Action",
@@ -34,7 +35,9 @@ export default function Genres() {
       }}
     >
       {genres.map((el, i) => (
-        <GenreBadge key={i} genre={el}></GenreBadge>
+        <Link to="/search">
+          <GenreBadge key={i} genre={el}></GenreBadge>
+        </Link>
       ))}
     </Container>
   );

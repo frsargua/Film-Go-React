@@ -1,13 +1,12 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import { Link } from "react-router-dom";
+
 export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
   const bgColor = "rgba(255, 141, 0, 0.59)";
 
@@ -22,13 +21,15 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
         borderRadius: "15px",
       }}
     >
-      <CardMedia
-        component="img"
-        height="450px"
-        width="300px"
-        image={`https://image.tmdb.org/t/p/original/${imgLink}`}
-        alt="green iguana"
-      />
+      <Link to="/details">
+        <CardMedia
+          component="img"
+          height="450px"
+          width="300px"
+          image={`https://image.tmdb.org/t/p/original/${imgLink}`}
+          alt="green iguana"
+        />
+      </Link>
 
       <IconButton
         id="addToWishList"

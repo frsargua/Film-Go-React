@@ -3,6 +3,12 @@ body {
   margin: 0;
 }
 
+/* Block spacer */
+
+.block__section-5 {
+  padding-bottom: 5rem;
+}
+
 .spacer {
   aspect-ratio: 900/100;
   width: 100%;

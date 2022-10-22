@@ -27,7 +27,7 @@ export default function MovieDetails({ url }) {
   };
   return (
     <>
-      <Container>
+      <Container className="block__section-5">
         <Typography variant="h1" textAlign="center">
           Title
         </Typography>

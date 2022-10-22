@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import CardMovie from "../CardMovie/index.jsx";
 import { styled } from "@mui/material/styles";
 import Genres from "../Genres";
+import { useNavigate } from "react-router-dom";
 
 const top100Films = () => [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -64,6 +65,14 @@ export default function Hero() {
     zIndex: 0,
   }));
 
+  const navigate = useNavigate();
+
+  function searchMovieData(event) {
+    if (event.keyCode === 13) {
+      navigate("/details");
+    }
+  }
+
   return (
     <>
       <Box
@@ -100,8 +109,8 @@ export default function Hero() {
             </Typography>
             <Autocomplete
               fullWidth
-              id="free-solo-demo"
               freeSolo
+              onKeyUp={searchMovieData}
               options={top100Films().map((option) => option.title)}
               renderInput={(params) => (
                 <TextField
