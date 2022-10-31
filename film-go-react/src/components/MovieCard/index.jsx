@@ -24,7 +24,7 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
           component="img"
           height="450px"
           width="300px"
-          image={`https://image.tmdb.org/t/p/original/${imgLink}`}
+          image={`https://image.tmdb.org/t/p/original${imgLink}`}
           alt="green iguana"
         />
       </Link>
@@ -32,7 +32,7 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
       <IconButton
         id="addToWishList"
         title="${title}"
-        movieID={`${id}`}
+        movieid={`${id}`}
         size="large"
         color="warning"
         sx={{
