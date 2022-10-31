@@ -8,10 +8,11 @@ export default function GenreBadge({ genre, genrePair }) {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    genrePair.forEach((el) => {
+  const handleClick = async () => {
+    await genrePair.forEach((el) => {
+      console.log(el);
       if (genre === el.name) {
-        navigate(`/details/${el.id}`);
+        navigate(`/search/${el.id}`);
       }
     });
   };
