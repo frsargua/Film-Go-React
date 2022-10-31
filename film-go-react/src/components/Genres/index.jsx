@@ -20,8 +20,8 @@ export default function Genres() {
     const genresData = await fetchData(apiUrl);
     return genresData.genres;
   }
-  useEffect(async () => {
-    let dataGenre = await getGenrePairs();
+  useEffect(() => {
+    let dataGenre = getGenrePairs();
     setGenrePair(dataGenre);
   }, []);
   return (

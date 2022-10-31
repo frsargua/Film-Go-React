@@ -24,18 +24,27 @@ export default function Hero() {
     const data = await fetch(
       `https://imdb-api.com/en/API/SearchMovie/k_voxajyfz/${title}`
     );
+    console.log("inside");
     return data.json();
   }
 
-  async function debounce(func, timeout = 300) {
-    let timer;
+  function debounce(func, delay = 1000) {
+    let timeout;
+
     return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func(...args);
+      }, delay);
     };
   }
+
+  const updateDebounceRequest = debounce(async (title) => {
+    const data = await getData(title);
+    console.log(data.results.slice(0, 4));
+    let shortenedData = data.results.slice(0, 4);
+    setFilmTitles(shortenedData);
+  });
 
   const navigate = useNavigate();
   async function searchMovieData(event) {
@@ -43,15 +52,8 @@ export default function Hero() {
       navigate("/details");
     } else {
       const movieTitle = event.target.defaultValue;
-      const processChange = await debounce(async () => {
-        getData().then((data) => {
-          console.log(data);
-          // setFilmTitles(data.results.slice(0.5));
-        });
-      });
-      console.log(processChange());
-      // let topFiveResults = filmData.results.slice(0, 5);
-      // setFilmTitles(topFiveResults);
+      let data = await updateDebounceRequest(movieTitle);
+      console.log(data);
     }
   }
 
