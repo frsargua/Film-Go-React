@@ -1,13 +1,13 @@
 import * as React from "react";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
-import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
+import { fetchData } from "../../utils";
+import { useParams } from "react-router-dom";
 
 import {
   Card,
@@ -19,8 +19,36 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 
-export default function MovieDetails({ url }) {
+export default function MovieDetails() {
   const [open, setOpen] = React.useState(true);
+  const [movieData, setMovieData] = React.useState({});
+
+  const { id } = useParams();
+
+  const convertToImdbID = async (tmdb_id) => {
+    const ApiToImdbID = `https://api.themoviedb.org/3/movie/${tmdb_id}/external_ids?api_key=7c7537b799513b436eb6bed714d7edcc`;
+    const { imdb_id } = await fetchData(ApiToImdbID);
+    return imdb_id;
+  };
+
+  const getMovieData = async (filmId) => {
+    const imdbAPI_MovieDetails = `https://imdb-api.com/en/API/Title/k_voxajyfz/${filmId}/Trailer,Ratings,`;
+    const trailerUrl = `https://imdb-api.com/en/API/YouTubeTrailer/k_voxajyfz/${filmId}`;
+    const movieData = await fetchData(imdbAPI_MovieDetails);
+    const trailerData = await fetchData(trailerUrl);
+    return { ...movieData, ...trailerData };
+  };
+
+  React.useEffect(() => {
+    convertToImdbID(id)
+      .then((result) => {
+        return getMovieData(result);
+      })
+      .then((data) => {
+        console.log(data);
+        setMovieData(data);
+      });
+  }, []);
 
   const handleClick = () => {
     setOpen(!open);
@@ -29,7 +57,7 @@ export default function MovieDetails({ url }) {
     <>
       <Container className="block__section-5">
         <Typography variant="h1" textAlign="center">
-          Title
+          {movieData?.title}
         </Typography>
         <Card>
           <CardContent>
@@ -40,15 +68,9 @@ export default function MovieDetails({ url }) {
                   xs={12}
                   md={3}
                   component="img"
-                  src="https://m.media-amazon.com/images/M/MV5BNGU5NzVkMmEtMjg4MC00MmY1LWJkYmQtYWEwZTFlODBiMzFlXkEyXkFqcGdeQXVyMTA2ODkwNzM5._V1_Ratio0.7189_AL_.jpg"
+                  src={movieData?.image}
                 />
-                {/* <Box component="img" src={`${url}`} /> */}
-                {/* <Box
-                  sx={{ height: "100%" }}
-                  component="img"
-                  src="https://m.media-amazon.com/images/M/MV5BNGU5NzVkMmEtMjg4MC00MmY1LWJkYmQtYWEwZTFlODBiMzFlXkEyXkFqcGdeQXVyMTA2ODkwNzM5._V1_Ratio0.7189_AL_.jpg"
-                />
-              </Grid> */}
+
                 <Grid xs={12} md={9} item sx={{ height: "100%" }}>
                   <Typography
                     component="iframe"

@@ -19,7 +19,7 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
         borderRadius: "15px",
       }}
     >
-      <Link to="/details">
+      <Link to={`/details/${id}`}>
         <CardMedia
           component="img"
           height="450px"
@@ -67,6 +67,8 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
           background: "black",
           color: "white",
           display: "flex",
+          justifyContent: "flex-start",
+          width: "100%",
         }}
       >
         <Typography
@@ -77,13 +79,12 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
             color: "black",
             p: "1rem",
             borderBottomRightRadius: "10px",
-            m: "auto",
             mr: "10px",
           }}
         >
           {index}
         </Typography>
-        <Typography variant="h6" fontWeight="700" sx={{ m: "auto" }}>
+        <Typography variant="h6" textAlign="center" fontWeight="700">
           {title}
         </Typography>
       </Box>
