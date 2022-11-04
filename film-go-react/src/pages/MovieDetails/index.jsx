@@ -75,7 +75,7 @@ export default function MovieDetails() {
                   <Typography
                     component="iframe"
                     sx={{ height: "490px", width: "100%" }}
-                    src="https://www.youtube.com/embed/a8Gx8wiNbs8"
+                    // src={`https://www.youtube.com/embed/${movieData?.trailer?.videoId}`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
