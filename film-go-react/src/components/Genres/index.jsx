@@ -23,10 +23,10 @@ export default function Genres() {
   }, [genrePair]);
   return (
     <Container
-      maxWidth="xl"
       sx={{
         display: "flex",
         flexWrap: "wrap",
+        // flexDirection: "row",
         justifyContent: "center",
         zIndex: "999",
       }}

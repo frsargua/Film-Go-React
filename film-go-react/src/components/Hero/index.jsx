@@ -2,6 +2,7 @@ import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import SvgHeroImage from "../../images/Hero.svg";
+import SvgHeroImageSmallScreen from "../../images/hero-phone.svg";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import CardMovie from "../CardMovie/index.jsx";
@@ -61,8 +62,11 @@ export default function Hero() {
     <>
       <Box
         sx={{
-          backgroundImage: `url('${SvgHeroImage}')`,
-          aspectRatio: "900 / 500",
+          backgroundImage: {
+            xs: `url('${SvgHeroImageSmallScreen}')`,
+            md: `url('${SvgHeroImage}')`,
+          },
+          aspectRatio: { xs: "960/540", md: "900 / 500" },
           width: "100%",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -70,10 +74,9 @@ export default function Hero() {
           position: "relative",
         }}
       >
-        <Container sx={{ height: "100%" }}>
+        <Container>
           <Box
             sx={{
-              height: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -82,12 +85,29 @@ export default function Hero() {
           >
             <Typography
               variant="h1"
+              component="h1"
               mt="3rem"
               color="white"
               fontWeight="700"
               textAlign="center"
               gutterBottom
-              sx={{ zIndex: 2 }}
+              sx={{ zIndex: 2, display: { xs: "none", md: "block" } }}
+            >
+              Let's watch something...
+            </Typography>
+            <Typography
+              variant="h3"
+              component="h1"
+              mt="3rem"
+              color="white"
+              fontWeight="700"
+              textAlign="center"
+              gutterBottom
+              sx={{
+                zIndex: 2,
+                display: { xs: "block", md: "none" },
+                mt: "10rem",
+              }}
             >
               Let's watch something...
             </Typography>
@@ -121,7 +141,7 @@ export default function Hero() {
             sx={{
               top: `${el.top}`,
               left: `${el.left}`,
-              display: { md: "none", lg: "block" },
+              display: { xs: el.smallSize, md: "block" },
             }}
           >
             <CardMovie emoji={`${el.url}`} size={`${el.size}`} />

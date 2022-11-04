@@ -20,15 +20,15 @@ export default function GenreBadge({ genre, genrePair }) {
   return (
     <Chip
       label={genre}
+      size="small"
       sx={{
         border: `3px solid ${color}`,
         backgroundColor: "white",
         width: "fit-content",
-        px: "1rem",
-        py: "1.4rem",
-        mx: "1rem",
-        my: "1rem",
-        boxShadow: "0 0 3px 5px #a6a4a4",
+        px: "0.5rem",
+        py: "1.2rem",
+        m: "0.7rem",
+
         fontSize: "1.3rem",
       }}
       onClick={handleClick}
