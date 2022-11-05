@@ -5,9 +5,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
+import Chip from "@mui/material/Chip";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import { fetchData } from "../../utils";
 import { useParams } from "react-router-dom";
+import randomColor from "randomcolor";
 
 import {
   Card,
@@ -20,6 +22,7 @@ import {
 import { Box } from "@mui/system";
 
 export default function MovieDetails() {
+  let color = randomColor();
   const [open, setOpen] = React.useState(true);
   const [movieData, setMovieData] = React.useState({});
 
@@ -56,7 +59,20 @@ export default function MovieDetails() {
   return (
     <>
       <Container className="block__section-5">
-        <Typography variant="h1" textAlign="center">
+        <Typography
+          variant="h2"
+          component="h1"
+          textAlign="center"
+          sx={{ display: { xs: "none", md: "block" } }}
+        >
+          {movieData?.title}
+        </Typography>
+        <Typography
+          variant="h3"
+          component="h1"
+          textAlign="center"
+          sx={{ display: { xs: "block", md: "none" } }}
+        >
           {movieData?.title}
         </Typography>
         <Card>
@@ -75,7 +91,7 @@ export default function MovieDetails() {
                   <Typography
                     component="iframe"
                     sx={{ height: "490px", width: "100%" }}
-                    // src={`https://www.youtube.com/embed/${movieData?.trailer?.videoId}`}
+                    src={`https://www.youtube.com/embed/${movieData?.trailer?.videoId}`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -85,29 +101,56 @@ export default function MovieDetails() {
                 <Grid xs={12} item>
                   <Divider />
                   <Typography variant="h6" fontWeight="700">
-                    Title
+                    Plot
                   </Typography>
                   <Typography variant="body" textAlign="center">
-                    Lorem
+                    {movieData.plot}
                   </Typography>
                 </Grid>
                 <Grid xs={12} item>
                   <Divider />
                   <Typography variant="h6" fontWeight="700">
-                    Title
+                    Stars
                   </Typography>
                   <Typography variant="body" textAlign="center">
-                    Lorem
+                    {movieData.stars}
                   </Typography>
                 </Grid>
                 <Grid xs={12} item>
                   <Divider />
                   <Typography variant="h6" fontWeight="700">
-                    Story line
+                    Writer/s
                   </Typography>
                   <Typography variant="body" textAlign="center">
-                    Lorem
+                    {movieData.writers}
                   </Typography>
+                </Grid>
+                <Grid xs={12} item>
+                  <Divider />
+                  <Typography variant="h6" fontWeight="700">
+                    Genres
+                  </Typography>
+                  <Box>
+                    {movieData?.genreList?.map((el) => {
+                      return (
+                        <Chip
+                          label={el.key}
+                          size="small"
+                          sx={{
+                            border: `3px solid ${color}`,
+
+                            backgroundColor: "white",
+                            width: "fit-content",
+                            px: "0.5rem",
+                            py: "1.2rem",
+                            m: "0.7rem",
+
+                            fontSize: "1.3rem",
+                          }}
+                        />
+                      );
+                    })}
+                  </Box>
                 </Grid>
                 <Grid xs={12} item>
                   <ListItemButton onClick={handleClick}>
