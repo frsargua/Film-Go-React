@@ -10,7 +10,7 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import SearchIcon from "@mui/icons-material/Search";
+import { WishlistContext } from "../../context/Wishlist-context";
 import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
@@ -59,6 +59,8 @@ export default function Navbar() {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  let { listCount } = React.useContext(WishlistContext);
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -90,7 +92,7 @@ export default function Navbar() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={listCount} color="error">
             <BookmarksIcon />
           </Badge>
         </IconButton>
@@ -118,15 +120,6 @@ export default function Navbar() {
                 Film-Go
               </Link>
             </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
           </Toolbar>
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -135,7 +128,7 @@ export default function Navbar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={listCount} color="error">
                 <BookmarksIcon />
               </Badge>
             </IconButton>

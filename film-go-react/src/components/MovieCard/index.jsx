@@ -6,8 +6,22 @@ import { Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { Link } from "react-router-dom";
+import { WishlistContext } from "../../context/Wishlist-context";
 
-export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
+export default function MovieCard(props) {
+  let { addMovieToWishList, removeMovieFromWishList, wishlist } =
+    React.useContext(WishlistContext);
+  let { imgLink, title, index, id, trailerLink } = props;
+
+  function addToWishList() {
+    addMovieToWishList(props);
+  }
+
+  function removeFromWishList() {
+    removeMovieFromWishList(props);
+  }
+
+  const inWishlist = wishlist.some((el) => el.id == id);
   return (
     <Card
       sx={{
@@ -34,7 +48,8 @@ export default function MovieCard({ imgLink, title, index, id, trailerLink }) {
         title="${title}"
         movieid={`${id}`}
         size="large"
-        color="warning"
+        color={inWishlist ? "primary" : "warning"}
+        onClick={!inWishlist ? addToWishList : removeFromWishList}
         sx={{
           p: "0.5rem",
           position: "absolute",

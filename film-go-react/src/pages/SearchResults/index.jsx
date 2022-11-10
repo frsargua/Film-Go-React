@@ -11,9 +11,6 @@ export default function SearchResults() {
   const getTop10Movies = async (genreId) => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=7c7537b799513b436eb6bed714d7edcc&with_genres=${genreId}`;
     const top10Movies = await fetchData(url);
-    console.log(genreId);
-    console.log(url);
-    console.log(top10Movies.results.slice(0, 10));
     setMovies(top10Movies.results.slice(0, 10));
   };
 
