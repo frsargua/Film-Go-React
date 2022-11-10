@@ -25,7 +25,6 @@ export default function Hero() {
     const data = await fetch(
       `https://imdb-api.com/en/API/SearchMovie/k_voxajyfz/${title}`
     );
-    console.log("inside");
     return data.json();
   }
 
@@ -42,20 +41,19 @@ export default function Hero() {
 
   const updateDebounceRequest = debounce(async (title) => {
     const data = await getData(title);
-    console.log(data.results.slice(0, 4));
     let shortenedData = data.results.slice(0, 4);
     setFilmTitles(shortenedData);
   });
 
   const navigate = useNavigate();
+
+  function navigateToPage(movideId) {
+    navigate(`/details/${movideId}`);
+  }
+
   async function searchMovieData(event) {
-    if (event.keyCode === 13) {
-      navigate("/details");
-    } else {
-      const movieTitle = event.target.defaultValue;
-      let data = await updateDebounceRequest(movieTitle);
-      console.log(data);
-    }
+    const { title: movieTitle } = event.target.defaultValue;
+    await updateDebounceRequest(movieTitle);
   }
 
   return (
@@ -115,7 +113,18 @@ export default function Hero() {
               fullWidth
               freeSolo
               onKeyUp={searchMovieData}
-              options={filmTitles?.map((option) => option.title)}
+              onChange={(e, value) => navigateToPage(value.id)}
+              getOptionLabel={(option) => option?.title || ""}
+              options={filmTitles?.map((option) => {
+                return { title: option.title, id: option.id };
+              })}
+              renderOption={(props, option) => {
+                return (
+                  <li {...props} movieid={option.id}>
+                    {option.title}&nbsp;&nbsp;&nbsp;
+                  </li>
+                );
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
