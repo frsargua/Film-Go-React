@@ -12,6 +12,8 @@ import Menu from "@mui/material/Menu";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { WishlistContext } from "../../context/Wishlist-context";
 import { Link } from "react-router-dom";
+import ClearIcon from "@mui/icons-material/Clear";
+import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,7 +61,8 @@ export default function Navbar() {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  let { listCount } = React.useContext(WishlistContext);
+  let { listCount, wishlist, removeMovieFromWishList } =
+    React.useContext(WishlistContext);
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -86,18 +89,44 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={listCount} color="error">
-            <BookmarksIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+      {wishlist?.length ? (
+        wishlist.map((el) => (
+          <MenuItem>
+            <Typography
+              component="img"
+              src={`https://image.tmdb.org/t/p/original${el.imgLink}`}
+              sx={{ width: "100px" }}
+            />
+            <Box
+              component="div"
+              sx={{
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                width: "150px",
+                my: 2,
+                p: 1.5,
+              }}
+            >
+              {el.title}
+            </Box>
+
+            <IconButton
+              onClick={() => {
+                removeMovieFromWishList(el);
+              }}
+            >
+              <ClearIcon />
+            </IconButton>
+          </MenuItem>
+        ))
+      ) : (
+        <>
+          <Typography variant="h5" sx={{ mx: 2 }}>
+            <TheaterComedyIcon sx={{ mr: 2, my: "auto" }} />
+            Add more movies!
+          </Typography>
+        </>
+      )}
     </Menu>
   );
 
@@ -126,6 +155,9 @@ export default function Navbar() {
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
               color="inherit"
             >
               <Badge badgeContent={listCount} color="error">
