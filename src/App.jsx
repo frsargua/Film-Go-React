@@ -4,14 +4,14 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme/index.jsx";
 
 import SearchResults from "./pages/SearchResults";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import MovieDetails from "./pages/MovieDetails";
 import HomePage from "./pages/Homepage";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <HashRouter base="/">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -19,7 +19,7 @@ function App() {
           <Route path="/details" element={<MovieDetails />} />
           <Route path="/details/:id" element={<MovieDetails />} />
         </Routes>
-      </Router>
+      </HashRouter>
     </ThemeProvider>
   );
 }
