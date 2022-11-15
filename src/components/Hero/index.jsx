@@ -41,7 +41,7 @@ export default function Hero() {
 
   const updateDebounceRequest = debounce(async (title) => {
     const data = await getData(title);
-    let shortenedData = data.results.slice(0, 4);
+    let shortenedData = data?.results.slice(0, 4);
     setFilmTitles(shortenedData);
   });
 
@@ -53,7 +53,7 @@ export default function Hero() {
 
   async function searchMovieData(event) {
     const { title: movieTitle } = event.target.defaultValue;
-    await updateDebounceRequest(movieTitle);
+    updateDebounceRequest(movieTitle);
   }
 
   return (
@@ -113,15 +113,26 @@ export default function Hero() {
               fullWidth
               freeSolo
               onKeyUp={searchMovieData}
-              onChange={(e, value) => navigateToPage(value.id)}
+              onChange={(value) => {
+                if (value?.id) {
+                  navigate(value.id);
+                }
+              }}
               getOptionLabel={(option) => option?.title || ""}
               options={filmTitles?.map((option) => {
                 return { title: option.title, id: option.id };
               })}
               renderOption={(props, option) => {
+                let { title, id } = option;
                 return (
-                  <li {...props} movieid={option.id}>
-                    {option.title}&nbsp;&nbsp;&nbsp;
+                  <li
+                    {...props}
+                    onClick={() => {
+                      navigateToPage(id);
+                    }}
+                    movieid={id}
+                  >
+                    {title}&nbsp;&nbsp;&nbsp;
                   </li>
                 );
               }}

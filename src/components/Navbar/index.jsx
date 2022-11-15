@@ -120,12 +120,10 @@ export default function Navbar() {
           </MenuItem>
         ))
       ) : (
-        <>
-          <Typography variant="h5" sx={{ mx: 2 }}>
-            <TheaterComedyIcon sx={{ mr: 2, my: "auto" }} />
-            Add more movies!
-          </Typography>
-        </>
+        <Typography variant="h5" sx={{ mx: 2 }}>
+          <TheaterComedyIcon sx={{ mr: 2, my: "auto" }} />
+          Add more movies!
+        </Typography>
       )}
     </Menu>
   );

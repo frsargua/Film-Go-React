@@ -18,9 +18,6 @@ export default function Genres() {
     getGenrePairs();
   }, []);
 
-  useEffect(() => {
-    console.log(genrePair);
-  }, [genrePair]);
   return (
     <Container
       sx={{

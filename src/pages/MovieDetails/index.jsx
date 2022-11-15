@@ -54,7 +54,7 @@ export default function MovieDetails() {
           variant="h2"
           component="h1"
           textAlign="center"
-          sx={{ display: { xs: "none", md: "block" } }}
+          sx={{ display: { xs: "none", md: "block" }, mt: "3rem" }}
         >
           {movieData?.title}
         </Typography>
@@ -154,19 +154,19 @@ export default function MovieDetails() {
                   <Collapse in={open} timeout="auto" unmountOnExit>
                     <Grid container spacing={2}>
                       {videoSuggestions.map((el) => {
+                        console.log(el.thumbnail.url);
                         return (
                           <Grid item xs={12} md={4}>
-                            <Card sx={{ width: "100%" }}>
-                              <Box
-                                component="a"
-                                href={el.trailer}
-                                sx={{
-                                  height: "200px",
-                                  width: "100%",
-                                  backgroundColor: "blue",
-                                }}
+                            <Box
+                              component="a"
+                              href={el.trailer}
+                              target="_blank"
+                            >
+                              <img
+                                src={`${el.thumbnail.url}`}
+                                style={{ width: "320px", height: "180px" }}
                               />
-                            </Card>
+                            </Box>
                           </Grid>
                         );
                       })}
