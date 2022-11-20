@@ -13,3 +13,9 @@ export const getMovieData = async (filmId) => {
   const trailerData = await fetchData(trailerUrl);
   return { ...movieData, ...trailerData };
 };
+
+export const getTrailerId = async (filmId) => {
+  const trailerUrl = `https://imdb-api.com/en/API/YouTubeTrailer/k_voxajyfz/${filmId}`;
+  const trailerData = await fetchData(trailerUrl);
+  return trailerData;
+};

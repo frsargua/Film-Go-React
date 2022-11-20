@@ -7,10 +7,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { Link } from "react-router-dom";
 import { WishlistContext } from "../../context/Wishlist-context";
+import { MovieTrailerContext } from "../../context/MovieTrailer";
 
 export default function MovieCard(props) {
   let { addMovieToWishList, removeMovieFromWishList, wishlist } =
     React.useContext(WishlistContext);
+  let { updateModalState, updateMovieTrailerLink } =
+    React.useContext(MovieTrailerContext);
   let { imgLink, title, index, id, trailerLink } = props;
 
   function addToWishList() {
@@ -19,6 +22,12 @@ export default function MovieCard(props) {
 
   function removeFromWishList() {
     removeMovieFromWishList(props);
+  }
+
+  function updateMovieTrailerAndModal() {
+    updateMovieTrailerLink(id).then(() => {
+      updateModalState();
+    });
   }
 
   const inWishlist = wishlist.some((el) => el.id == id);
@@ -64,6 +73,7 @@ export default function MovieCard(props) {
         trailer={`https://www.youtube.com/embed/${trailerLink}`}
         size="large"
         color="warning"
+        onClick={updateMovieTrailerAndModal}
         sx={{
           p: "0.5rem",
           position: "absolute",

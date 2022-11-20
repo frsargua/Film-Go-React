@@ -44,3 +44,53 @@ body {
 .card-container {
   overflow: hidden;
 }
+
+/* Video container */
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(33, 33, 33, 0.878);
+  /* Centers the iframe tag in the center by making it flex */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Opacity is 0 when unclicked */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms;
+}
+
+.video-container .close {
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 25px;
+  cursor: pointer;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.video-container iframe {
+  height: 40vw;
+  width: 71vw;
+  /* Video has size of 0 when the page is loaded */
+  transform: scale(0);
+  outline: none;
+  transition: all 300ms;
+}
+
+.show {
+  pointer-events: all;
+  /* JS adds the class show to the video-container */
+  opacity: 1;
+}
+
+.video-container.show iframe {
+  /* JS adds the class show to the iframe tag to make the scale of the video be 1*/
+  transform: scale(1);
+}

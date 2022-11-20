@@ -4,11 +4,14 @@ import App from "./App";
 import "./index.css";
 
 import { WishlistProvider } from "./context/Wishlist-context";
+import { MovieTrailerProvider } from "./context/MovieTrailer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <WishlistProvider>
-      <App />
+      <MovieTrailerProvider>
+        <App />
+      </MovieTrailerProvider>
     </WishlistProvider>
   </React.StrictMode>
 );

@@ -3,6 +3,7 @@ import MovieCard from "../../components/MovieCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils";
+import PopUpWindow from "../../components/PopUpWindon";
 
 export default function SearchResults() {
   const [movies, setMovies] = useState([]);
@@ -11,6 +12,7 @@ export default function SearchResults() {
   const getTop10Movies = async (genreId) => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=7c7537b799513b436eb6bed714d7edcc&with_genres=${genreId}`;
     const top10Movies = await fetchData(url);
+    console.log(top10Movies.results.slice(0, 10));
     setMovies(top10Movies.results.slice(0, 10));
   };
 
@@ -20,6 +22,7 @@ export default function SearchResults() {
 
   return (
     <>
+      {true && <PopUpWindow />}
       <Typography
         variant="h3"
         fontWeight="400"
