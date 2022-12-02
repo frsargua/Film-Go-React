@@ -36,7 +36,7 @@ export default function MovieDetails() {
       })
       .then((data) => {
         setMovieData(data);
-        return embedYoutubeVideos("avatar");
+        return embedYoutubeVideos(data?.title);
       })
       .then((arr) => {
         setVideoSuggestions(arr);
@@ -145,10 +145,9 @@ export default function MovieDetails() {
                 </Grid>
                 <Grid xs={12} item>
                   <ListItemButton onClick={handleClick}>
-                    <ListItemIcon>
-                      <ReadMoreIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Inbox" />
+                    <Typography variant="h6" fontWeight="700">
+                      Youtube Suggestions
+                    </Typography>
                     {open ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
                   <Collapse in={open} timeout="auto" unmountOnExit>

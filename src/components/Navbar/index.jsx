@@ -172,7 +172,9 @@ export default function Navbar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <BookmarksIcon />
+              <Badge badgeContent={listCount} color="error">
+                <BookmarksIcon />
+              </Badge>
             </IconButton>
           </Box>
         </Toolbar>
